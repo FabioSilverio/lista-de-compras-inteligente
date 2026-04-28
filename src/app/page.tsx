@@ -434,7 +434,7 @@ export default function Home() {
                       </button>
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="ml-2 w-7 h-7 rounded-full hover:bg-red-100 text-amber-400 hover:text-red-600 font-bold text-sm flex items-center justify-center transition-colors opacity-0 group-hover:opacity-100"
+                        className="ml-2 w-7 h-7 rounded-full hover:bg-red-100 text-amber-400 hover:text-red-500 font-bold text-sm flex items-center justify-center transition-colors"
                       >
                         ×
                       </button>
