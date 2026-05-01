@@ -227,4 +227,159 @@ export const limpeza: Product[] = [
   { id: "sabao-pedra", name: "Sabão em Pedra (un)", category: "Limpeza", prices: [
     { store: "Assaí", price: 1.99 }, { store: "Carrefour", price: 2.49 },
   ]},
+
+  // ===== LIMPADORES ESPECÍFICOS =====
+  { id: "limpa-vinilico", name: "Limpa Vinílico (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 9.99 }, { store: "Carrefour", price: 12.90 }, { store: "Pão de Açúcar", price: 14.90 },
+  ]},
+  { id: "limpa-estofado", name: "Limpa Estofado (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 14.90 }, { store: "Carrefour", price: 18.90 },
+  ]},
+  { id: "limpa-estofado-spray", name: "Limpa Estofado Spray (300ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 12.90 }, { store: "Carrefour", price: 15.90 },
+  ]},
+  { id: "limpa-aluminio", name: "Limpa Alumínio (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 7.49 }, { store: "Carrefour", price: 8.99 },
+  ]},
+  { id: "limpa-inox", name: "Limpa Inox (200ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 8.99 }, { store: "Carrefour", price: 11.90 },
+  ]},
+  { id: "limpa-pedras", name: "Limpa Pedras Cremoso (250g)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 7.49 }, { store: "Carrefour", price: 9.49 },
+  ]},
+  { id: "limpa-azulejo", name: "Limpa Azulejo (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 6.49 }, { store: "Carrefour", price: 7.99 },
+  ]},
+  { id: "limpa-piso", name: "Limpa Piso (1L)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 7.49 }, { store: "Carrefour", price: 9.49 },
+  ]},
+  { id: "limpa-piso-laminado", name: "Limpa Piso Laminado (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 12.90 }, { store: "Carrefour", price: 15.90 },
+  ]},
+  { id: "limpa-pia", name: "Limpa Pia (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 5.99 }, { store: "Carrefour", price: 7.49 },
+  ]},
+  { id: "limpa-banheiro", name: "Limpa Banheiro (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 6.99 }, { store: "Carrefour", price: 8.99 },
+  ]},
+  { id: "limpa-vaso", name: "Limpa Vaso Sanitário (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 6.49 }, { store: "Carrefour", price: 7.99 },
+  ]},
+  { id: "limpa-fogao", name: "Limpa Fogão (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 7.49 }, { store: "Carrefour", price: 8.99 },
+  ]},
+  { id: "limpa-microondas", name: "Limpa Micro-ondas (300ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 9.99 }, { store: "Carrefour", price: 12.90 },
+  ]},
+  { id: "limpa-geladeira", name: "Limpa Geladeira (300ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 9.49 }, { store: "Carrefour", price: 11.90 },
+  ]},
+  { id: "limpa-cortina", name: "Limpa Cortina (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 11.90 }, { store: "Carrefour", price: 14.90 },
+  ]},
+  { id: "limpa-tapete", name: "Limpa Tapete (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 13.90 }, { store: "Carrefour", price: 16.90 },
+  ]},
+  { id: "limpa-couro", name: "Limpa Couro (200ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 19.90 }, { store: "Carrefour", price: 24.90 },
+  ]},
+  { id: "limpa-marmore", name: "Limpa Mármore (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 14.90 }, { store: "Carrefour", price: 18.90 },
+  ]},
+  { id: "limpa-acrilico", name: "Limpa Acrílico (300ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 11.90 }, { store: "Carrefour", price: 14.90 },
+  ]},
+  { id: "removedor-mofo", name: "Removedor de Mofo (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 11.90 }, { store: "Carrefour", price: 14.90 },
+  ]},
+  { id: "tira-limo", name: "Tira Limo (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 9.99 }, { store: "Carrefour", price: 12.90 },
+  ]},
+  { id: "tira-manchas", name: "Tira Manchas (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 12.90 }, { store: "Carrefour", price: 15.90 },
+  ]},
+  { id: "tira-manchas-roupa", name: "Tira Manchas para Roupa (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 14.90 }, { store: "Carrefour", price: 18.90 },
+  ]},
+  { id: "alvejante-roupa", name: "Alvejante para Roupa Colorida (1L)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 8.99 }, { store: "Carrefour", price: 10.90 },
+  ]},
+  { id: "alvejante-cloro", name: "Alvejante com Cloro (1L)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 5.99 }, { store: "Carrefour", price: 7.49 },
+  ]},
+
+  // ===== POLIDORES E LUSTRA =====
+  { id: "lustra-moveis-200ml", name: "Lustra Móveis (200ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 5.99 }, { store: "Carrefour", price: 7.49 },
+  ]},
+  { id: "polidor-moveis", name: "Polidor de Móveis (200ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 7.99 }, { store: "Carrefour", price: 9.99 },
+  ]},
+  { id: "cera-piso", name: "Cera para Piso (750ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 12.90 }, { store: "Carrefour", price: 15.90 },
+  ]},
+  { id: "cera-incolor", name: "Cera Incolor (200ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 8.49 }, { store: "Carrefour", price: 10.90 },
+  ]},
+  { id: "cera-vermelha", name: "Cera Vermelha (200ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 8.49 }, { store: "Carrefour", price: 10.90 },
+  ]},
+
+  // ===== AROMATIZADORES E PEDRAS =====
+  { id: "pedra-sanitaria", name: "Pedra Sanitária (un)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 3.99 }, { store: "Carrefour", price: 4.99 },
+  ]},
+  { id: "pedra-sanitaria-3un", name: "Pedra Sanitária (pct 3un)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 9.99 }, { store: "Carrefour", price: 12.90 },
+  ]},
+  { id: "bloco-aderente", name: "Bloco Aderente Sanitário (un)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 8.99 }, { store: "Carrefour", price: 11.90 },
+  ]},
+  { id: "aromatizador-ambiente", name: "Aromatizador de Ambientes (250ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 16.90 }, { store: "Carrefour", price: 19.90 },
+  ]},
+  { id: "spray-ambiente", name: "Spray Ambiente (300ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 8.49 }, { store: "Carrefour", price: 10.90 },
+  ]},
+  { id: "odorizador-tecidos", name: "Odorizador de Tecidos (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 14.90 }, { store: "Carrefour", price: 18.90 },
+  ]},
+  { id: "neutralizador-odores", name: "Neutralizador de Odores (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 19.90 }, { store: "Carrefour", price: 24.90 },
+  ]},
+  { id: "perfume-ambiente", name: "Perfume para Ambiente (200ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 12.90 }, { store: "Carrefour", price: 15.90 },
+  ]},
+  { id: "incenso", name: "Incenso (cx 8un)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 4.99 }, { store: "Carrefour", price: 6.99 },
+  ]},
+  { id: "vela-aromatica", name: "Vela Aromática (un)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 9.99 }, { store: "Carrefour", price: 13.90 },
+  ]},
+  { id: "anti-mofo-saquinho", name: "Anti-Mofo Saquinho (un)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 5.99 }, { store: "Carrefour", price: 7.99 },
+  ]},
+  { id: "naftalina", name: "Naftalina (50g)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 4.49 }, { store: "Carrefour", price: 5.99 },
+  ]},
+
+  // ===== INSETICIDAS =====
+  { id: "inseticida-aerosol", name: "Inseticida Aerossol (300ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 11.90 }, { store: "Carrefour", price: 14.90 },
+  ]},
+  { id: "raticida", name: "Raticida (un)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 6.99 }, { store: "Carrefour", price: 8.99 },
+  ]},
+  { id: "repelente-baratas", name: "Repelente de Baratas Gel (5g)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 9.99 }, { store: "Carrefour", price: 12.90 },
+  ]},
+  { id: "armadilha-formiga", name: "Armadilha para Formigas (un)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 5.99 }, { store: "Carrefour", price: 7.49 },
+  ]},
+  { id: "veneno-cupim", name: "Veneno para Cupim (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 19.90 }, { store: "Carrefour", price: 24.90 },
+  ]},
+  { id: "tira-bolor", name: "Tira Bolor (500ml)", category: "Limpeza", prices: [
+    { store: "Assaí", price: 11.90 }, { store: "Carrefour", price: 14.90 },
+  ]},
 ];

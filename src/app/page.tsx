@@ -228,8 +228,13 @@ export default function Home() {
           )}
 
           {/* Search results */}
-          {showResults && searchResults.length > 0 && (
+          {showResults && searchTerm.length >= 2 && (
             <div className="absolute left-0 mt-1 w-full bg-white rounded-xl shadow-2xl border border-amber-200 z-20 max-h-72 overflow-y-auto">
+              {searchResults.length === 0 && (
+                <div className="px-4 py-3 text-sm text-amber-600 bg-amber-50/40 border-b border-amber-100">
+                  Nenhum produto encontrado na base. Você pode adicionar manualmente abaixo:
+                </div>
+              )}
               {searchResults.map((product) => (
                 <button
                   key={product.id}
@@ -252,17 +257,15 @@ export default function Home() {
                   </div>
                 </button>
               ))}
-              {showCustom && searchTerm.length >= 2 && (
-                <button
-                  onClick={() => addItem(null, searchTerm)}
-                  className="w-full text-left px-4 py-3 hover:bg-green-50 transition-colors bg-green-50/50 border-t-2 border-green-200 flex items-center gap-2"
-                >
-                  <span className="text-green-700">+</span>
-                  <span className="font-medium text-green-800">
-                    Adicionar &quot;{searchTerm}&quot;
-                  </span>
-                </button>
-              )}
+              <button
+                onClick={() => addItem(null, searchTerm)}
+                className="w-full text-left px-4 py-3 hover:bg-green-100 transition-colors bg-green-50 border-t-2 border-green-200 flex items-center gap-2"
+              >
+                <span className="text-green-700 text-lg font-bold">+</span>
+                <span className="font-medium text-green-800">
+                  Adicionar &quot;{searchTerm}&quot; manualmente (sem preço)
+                </span>
+              </button>
             </div>
           )}
         </div>
