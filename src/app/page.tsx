@@ -21,6 +21,15 @@ interface ShoppingItem {
   prices?: PriceSource[];
 }
 
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export default function Home() {
   const [items, setItems] = useState<ShoppingItem[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -143,33 +152,143 @@ export default function Home() {
     return sum;
   }, 0);
 
+  const buildReceiptElement = useCallback(() => {
+    const wrapper = document.createElement("div");
+    wrapper.style.cssText = [
+      "position: fixed",
+      "top: -10000px",
+      "left: -10000px",
+      "width: 380px",
+      "padding: 24px 20px",
+      "background: #ffffff",
+      "color: #111111",
+      "font-family: 'Courier New', Courier, monospace",
+      "font-size: 13px",
+      "line-height: 1.5",
+      "box-sizing: border-box",
+    ].join(";");
+
+    const date = new Date();
+    const dateStr = date.toLocaleDateString("pt-BR");
+    const timeStr = date.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+
+    const dashLine = "-".repeat(38);
+    const dotLine = ". ".repeat(19);
+
+    const header = `
+      <div style="text-align:center;margin-bottom:8px;">
+        <div style="font-size:16px;font-weight:bold;letter-spacing:2px;">${escapeHtml(listTitle.toUpperCase())}</div>
+        <div style="font-size:11px;margin-top:4px;color:#444;">*** LISTA DE COMPRAS ***</div>
+      </div>
+      <div style="font-size:11px;color:#333;margin-bottom:6px;">
+        Data: ${dateStr} &nbsp;&nbsp; Hora: ${timeStr}<br/>
+        Itens: ${items.length} &nbsp;&nbsp; Marcados: ${checkedItems}
+      </div>
+      <div style="font-family:monospace;color:#000;letter-spacing:1px;">${dashLine}</div>
+      <div style="display:flex;justify-content:space-between;font-weight:bold;font-size:11px;margin:6px 0;">
+        <span>ITEM</span>
+        <span>QTD x PRECO &nbsp; SUBTOTAL</span>
+      </div>
+      <div style="font-family:monospace;color:#000;letter-spacing:1px;">${dashLine}</div>
+    `;
+
+    const itemRows = items
+      .map((item) => {
+        const price = item.prices && item.prices.length > 0 ? item.prices[0].price : 0;
+        const subtotal = price * item.quantity;
+        const checkMark = item.checked ? "[X]" : "[ ]";
+        const priceStr = price > 0
+          ? `${item.quantity}x R$${price.toFixed(2)}`
+          : `${item.quantity}x  -- `;
+        const subtotalStr = price > 0 ? `R$${subtotal.toFixed(2)}` : "-- ";
+
+        return `
+          <div style="margin:6px 0;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+              <div style="flex:1;font-size:13px;${item.checked ? "text-decoration:line-through;color:#777;" : ""}">
+                ${checkMark} ${escapeHtml(item.name)}
+              </div>
+              <div style="font-size:12px;text-align:right;white-space:nowrap;">
+                ${priceStr}<br/>
+                <strong>${subtotalStr}</strong>
+              </div>
+            </div>
+          </div>
+        `;
+      })
+      .join(`<div style="font-family:monospace;color:#999;font-size:9px;">${dotLine}</div>`);
+
+    const footer = `
+      <div style="font-family:monospace;color:#000;letter-spacing:1px;margin-top:8px;">${dashLine}</div>
+      <div style="display:flex;justify-content:space-between;font-weight:bold;font-size:14px;margin:8px 0;">
+        <span>TOTAL ESTIMADO</span>
+        <span>R$ ${totalEstimated.toFixed(2)}</span>
+      </div>
+      <div style="font-family:monospace;color:#000;letter-spacing:1px;">${dashLine}</div>
+      <div style="text-align:center;margin-top:14px;font-size:11px;color:#444;line-height:1.6;">
+        ** OBRIGADO E BOAS COMPRAS! **<br/>
+        Precos baseados na melhor oferta<br/>
+        de cada item na base de dados.<br/><br/>
+        ${"*".repeat(30)}<br/>
+        ${dateStr} ${timeStr}<br/>
+        ${"*".repeat(30)}
+      </div>
+    `;
+
+    wrapper.innerHTML = header + itemRows + footer;
+    document.body.appendChild(wrapper);
+    return wrapper;
+  }, [items, listTitle, checkedItems, totalEstimated]);
+
   const exportImage = useCallback(async () => {
-    if (!listRef.current) return;
-    const canvas = await html2canvas(listRef.current, {
-      backgroundColor: "#f5f0e8",
-      scale: 2,
-    });
-    const link = document.createElement("a");
-    link.download = "lista-de-compras.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  }, []);
+    if (items.length === 0) return;
+    const el = buildReceiptElement();
+    try {
+      const canvas = await html2canvas(el, {
+        backgroundColor: "#ffffff",
+        scale: 3,
+        logging: false,
+        useCORS: true,
+      });
+      const link = document.createElement("a");
+      link.download = `lista-compras-${Date.now()}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    } catch (err) {
+      console.error("Erro ao exportar PNG:", err);
+      alert("Erro ao exportar imagem. Tente novamente.");
+    } finally {
+      document.body.removeChild(el);
+    }
+  }, [items.length, buildReceiptElement]);
 
   const exportPDF = useCallback(async () => {
-    if (!listRef.current) return;
-    const canvas = await html2canvas(listRef.current, {
-      backgroundColor: "#f5f0e8",
-      scale: 2,
-    });
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF({
-      orientation: "portrait",
-      unit: "px",
-      format: [canvas.width / 2, canvas.height / 2],
-    });
-    pdf.addImage(imgData, "PNG", 0, 0, canvas.width / 2, canvas.height / 2);
-    pdf.save("lista-de-compras.pdf");
-  }, []);
+    if (items.length === 0) return;
+    const el = buildReceiptElement();
+    try {
+      const canvas = await html2canvas(el, {
+        backgroundColor: "#ffffff",
+        scale: 3,
+        logging: false,
+        useCORS: true,
+      });
+      const imgData = canvas.toDataURL("image/png");
+      const w = canvas.width / 3;
+      const h = canvas.height / 3;
+      const pdf = new jsPDF({
+        orientation: h > w ? "portrait" : "landscape",
+        unit: "px",
+        format: [w, h],
+      });
+      pdf.addImage(imgData, "PNG", 0, 0, w, h);
+      pdf.save(`lista-compras-${Date.now()}.pdf`);
+    } catch (err) {
+      console.error("Erro ao exportar PDF:", err);
+      alert("Erro ao exportar PDF. Tente novamente.");
+    } finally {
+      document.body.removeChild(el);
+    }
+  }, [items.length, buildReceiptElement]);
 
   return (
     <div className="min-h-screen bg-[#e8dcc8] py-4 px-2 sm:py-8 sm:px-4">
